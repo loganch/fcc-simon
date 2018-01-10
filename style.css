@@ -1,36 +1,41 @@
 #circle {
-    display: block;
-    padding: 0;
-    width: 200px;
-    height: 200px;
-    border: 1px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
-  }
-  
-  .quarter {
-    /* display: inline-block; */
-    float: left;
-    margin: 0;
-    padding: 0;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-  }
+  display: block;
+  padding: 0;
+  width: 200px;
+  height: 200px;
+  border: 1px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
 
-  #q1 {
-    background-color: #0f0;
-  }
-  
-  #q2 {
-    background-color: red;
-  }
-  
-  #q3 {
-    background-color: yellow;
-  }
-  
-  #q4 {
-    background-color: blue;
-  }
+.quarter {
+  /* display: inline-block; */
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  opacity: .5;
+}
+
+.quarter:hover {
+  opacity: 1;
+}
+
+#q1 {
+  background-color: #0f0;
+}
+
+#q2 {
+  background-color: red;
+}
+
+#q3 {
+  background-color: yellow;
+}
+
+#q4 {
+  background-color: blue;
+}
