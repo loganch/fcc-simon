@@ -24,6 +24,10 @@
   opacity: 1;
 }
 
+.quarter:active {
+  background-color: black;
+}
+
 #q1 {
   background-color: #0f0;
 }
