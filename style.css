@@ -17,7 +17,14 @@
   width: 100px;
   height: 100px;
   cursor: pointer;
+}
+
+.dim {
   opacity: .5;
+}
+
+.lit {
+  opacity: 1;
 }
 
 .quarter:hover {

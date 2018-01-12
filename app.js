@@ -29,11 +29,13 @@ var app = new Vue({
         },
 
         lightUp: function(quadrant) {
-            
-            document.getElementById('q' + quadrant).setAttribute('style', 'opacity: 1')
+            const quarter = this.$refs['q' + quadrant]
+            quarter.classList.remove('dim')
+            quarter.classList.add('lit')
             
             setTimeout(()=> {
-                document.getElementById('q' + quadrant).setAttribute('style', 'opacity: .5')
+                quarter.classList.add('dim')
+                quarter.classList.remove('lit')
             }, 800)
         },
 
@@ -61,6 +63,8 @@ var app = new Vue({
 
         beginPlaying: function() {
             this.reset()
+            // Disable the start button
+            this.$refs["startBt"].setAttribute('disabled', '')
             // Add to the sequence
             this.addToSequence()
             // Wait for a keypress
