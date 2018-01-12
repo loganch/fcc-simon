@@ -14,13 +14,18 @@
         <div class="column is-half">
             <div id="app">
                 <!-- <button class="button is-info" @click='testAlert()'>TEST</button> -->
-                <button class="is-primary button" @click='addToSequence'>Add 2 Seq</button>
-                <button class="button" @click='reset'>Reset</button>
-                <button class="button" @click='startPlayBack'>Playback</button>
-
-                <h1 class="subtitle">Steps: {{stepCount}}</h1>
+                
+                <article class="message is-centered is-info is-half">
+                    <div class="message-header">
+                        <p>
+                            Steps:
+                        </p>
+                    </div> <div class="message-body">
+                        <p>
+                            {{stepCount}}
+                        </p>
+                    </div></article>
                 <h2 class="">Sequence: {{sequence.toString()}}</h2>
-                <!-- <h2 class="">Playback Seqeunce: {{sequence.toString()}}</h2> -->
 
                 <div id="circle">
                     <div id="q1" ref="q1" class="quarter" @click="playSound(1)"></div>
@@ -28,12 +33,12 @@
                     <div id="q3" ref="q3" class="quarter" @click="playSound(1)"></div>
                     <div id="q4" ref="q4" class="quarter" @click="playSound(1)"></div>
                 </div>
-
-                <!-- <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" ref="sound1"></audio>
-                <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" ref="sound2"></audio>
-                <audio src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" ref="sound3"></audio>
-                <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" ref="sound4"></audio> -->
-            
+                
+                <div class="is-grouped">
+                    <button class="button is-primary" @click="beginPlaying()">Start</button>
+                    <button class="button" @click='reset'>Reset</button>
+                    <button class="button" @click='startPlayBack'>Playback</button>
+                </div>
             </div>
         </div>
     </div>

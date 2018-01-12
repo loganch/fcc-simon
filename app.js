@@ -40,12 +40,12 @@ var app = new Vue({
         startPlayBack: function() {
             this.sequenceCopy = [...this.sequence]
 
-            this.playInterval = setInterval(this.playBack, 1200)
+            this.playInterval = setInterval(this.playBack, 1100)
         },
 
         playBack: function() {
             if (this.sequenceCopy.length > 0) {
-                currentNum = this.sequenceCopy.shift()
+                const currentNum = this.sequenceCopy.shift()
                 this.playSound(currentNum)
                 this.lightUp(currentNum)
                 
@@ -57,6 +57,15 @@ var app = new Vue({
         
         playSound: function(index) {
             this.sounds[index-1].play()
+        },
+
+        beginPlaying: function() {
+            this.reset()
+            // Add to the sequence
+            this.addToSequence()
+            // Wait for a keypress
+
+            // 
         }
     }
 })
