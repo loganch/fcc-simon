@@ -26,6 +26,7 @@ var app = new Vue({
         reset: function() {
             this.sequence = []
             this.stepCount = 0
+            this.$refs['startBt'].removeAttribute('disabled')
         },
 
         lightUp: function(quadrant) {
