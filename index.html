@@ -28,15 +28,15 @@
                 <h2 class="">Sequence: {{sequence.toString()}}</h2>
 
                 <div id="circle">
-                    <div id="q1" ref="q1" class="quarter dim" @click="playSound(1)"></div>
-                    <div id="q2" ref="q2" class="quarter dim" @click="playSound(1)"></div>
-                    <div id="q3" ref="q3" class="quarter dim" @click="playSound(1)"></div>
-                    <div id="q4" ref="q4" class="quarter dim" @click="playSound(1)"></div>
+                    <div id="q1" ref="q1" class="quarter dim" @click="buttonClicked(1)"></div>
+                    <div id="q2" ref="q2" class="quarter dim" @click="buttonClicked(2)"></div>
+                    <div id="q3" ref="q3" class="quarter dim" @click="buttonClicked(3)"></div>
+                    <div id="q4" ref="q4" class="quarter dim" @click="buttonClicked(4)"></div>
                 </div>
                 
                 <div class="is-grouped">
                     <button ref="startBt" class="button is-primary" @click="beginPlaying()">Start</button>
-                    <button class="button" @click='reset'>Reset</button>
+                    <button ref="resetBt" class="button" @click='reset'>Reset</button>
                     <button class="button" @click='startPlayBack'>Playback</button>
                 </div>
             </div>
