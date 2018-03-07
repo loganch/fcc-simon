@@ -4,6 +4,7 @@ var app = new Vue({
     data: {
         sequence: [],
         sequenceCopy: [],
+        inPlay: false,
         stepCount: 0,
         playerStep: 0,
         playInterval: "",
@@ -18,15 +19,15 @@ var app = new Vue({
             var newNumber = Math.floor(Math.random() * 4) + 1
             this.sequence.push(newNumber)
             this.stepCount += 1
-            this.playSound(newNumber)
-            this.lightUp(newNumber)
-            
+            // this.playSound(newNumber)
+            // this.lightUp(newNumber)
         },
 
         reset: function() {
             this.sequence = []
             this.stepCount = 0
             this.$refs['startBt'].removeAttribute('disabled')
+            this.inPlay = false
         },
 
         lightUp: function(quadrant) {
@@ -62,15 +63,43 @@ var app = new Vue({
             this.sounds[index-1].play()
         },
 
+        buttonClicked: function(index) {
+            if (this.inPlay) {
+                //compare the incoming index to the current one in the sequence
+                if (index == this.sequence[this.playerStep]) {
+                //if it's good, play right sound and add to playerStep
+                    this.playSound(index)
+                    console.log("RIGHT!!")
+                    this.playerStep += 1
+                    //Once the whole sequence has been matched,
+                    //add to the sequence and reset the playerStep
+                    if (this.playerStep == this.stepCount) {
+                        this.addToSequence()
+                        this.startPlayBack()
+                        this.playerStep = 0
+                    }
+                } else {
+                //if wrong, play 'wrong' sound, restart sequence and play it all back
+                // on strict mode, reset it all
+                    console.log("WRONG!!")
+                    this.startPlayBack()
+                }
+            }
+        },
+
         beginPlaying: function() {
             this.reset()
             // Disable the start button
             this.$refs["startBt"].setAttribute('disabled', '')
+            this.$refs["resetBt"].removeAttribute('disabled')
             // Add to the sequence
             this.addToSequence()
-            // Wait for a keypress
-
-            // 
+            this.startPlayBack()
+            this.inPlay = true
         }
+    },
+
+    mounted: function() {
+        this.$refs['resetBt'].setAttribute('disabled', '')
     }
 })
