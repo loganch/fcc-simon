@@ -38,6 +38,8 @@
                     <button ref="startBt" class="button is-primary" @click="beginPlaying()">Start</button>
                     <button ref="resetBt" class="button" @click='reset'>Reset</button>
                     <button class="button" @click='startPlayBack'>Playback</button>
+                    <input type="checkbox" id="strict" v-model="strict">
+                    <label for="strict">Strict</label>
                 </div>
             </div>
         </div>
