@@ -27,6 +27,7 @@ var app = new Vue({
         reset: function() {
             this.sequence = []
             this.stepCount = 0
+            this.playerStep = 0
             this.$refs['startBt'].removeAttribute('disabled')
             this.inPlay = false
         },
@@ -80,11 +81,17 @@ var app = new Vue({
                         this.playerStep = 0
                     }
                 } else {
-                //if wrong, play 'wrong' sound, restart sequence and play it all back
-                // on strict mode, reset it all
-                    console.log("WRONG!!")
-                    this.startPlayBack()
+                    //if wrong, play 'wrong' sound, restart sequence and play it all back
+                    // on strict mode, reset it all
                     this.playerStep = 0
+                    if (this.strict) {
+                        console.log('WRONG! - STARTING OVER')
+                        this.beginPlaying()
+                    } else {
+                        console.log("WRONG!!")
+                        this.startPlayBack()
+                        this.playerStep = 0
+                    }
                 }
             }
         },
