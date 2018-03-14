@@ -83,6 +83,7 @@ var app = new Vue({
                 // on strict mode, reset it all
                     console.log("WRONG!!")
                     this.startPlayBack()
+                    this.playerStep = 0
                 }
             }
         },
