@@ -8,6 +8,7 @@ var app = new Vue({
         stepCount: 0,
         playerStep: 0,
         playInterval: "",
+        winningSteps: 20,
         sounds: [new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
             new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
             new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
@@ -75,6 +76,12 @@ var app = new Vue({
                     this.playerStep += 1
                     //Once the whole sequence has been matched,
                     //add to the sequence and reset the playerStep
+                    if (this.playerStep == this.winningSteps) {
+                        this.notify('won')
+                        this.reset()
+                        return
+                    }
+
                     if (this.playerStep == this.stepCount) {
                         this.addToSequence()
                         this.startPlayBack()
@@ -86,14 +93,49 @@ var app = new Vue({
                     this.playerStep = 0
                     if (this.strict) {
                         console.log('WRONG! - STARTING OVER')
+                        this.notify('strict_restart')
                         this.beginPlaying()
                     } else {
                         console.log("WRONG!!")
+
+                        this.notify('try_again')
                         this.startPlayBack()
                         this.playerStep = 0
                     }
                 }
             }
+        },
+
+        notify: function(type) {
+            let notifier = this.$refs['notifier']
+            let classToChange
+            let notifyText
+
+            switch(type) {
+                case 'try_again':
+                    classToChange = 'is-warning'
+                    notifyText = 'Try Again!'
+                    break
+                case 'strict_restart':
+                    classToChange = 'is-danger'
+                    notifyText = 'Strict Mode, Restarting!'
+                    break
+                case 'won':
+                    classToChange = 'is-success'
+                    notifyText = 'You Won!!'
+                    break
+                default:
+                    break
+            }
+
+            notifier.classList.add(classToChange)
+            notifier.innerHTML = notifyText
+            notifier.classList.remove('is-hidden')    
+
+            setTimeout((classToChange)=> {
+                notifier.classList.add('is-hidden')
+                notifier.classList.remove(classToChange)
+            }, 750)
         },
 
         beginPlaying: function() {
